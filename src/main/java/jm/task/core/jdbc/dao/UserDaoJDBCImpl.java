@@ -12,13 +12,13 @@ import java.util.List;
 public class UserDaoJDBCImpl implements UserDao {
     Statement statement;
 
-    {
+    /*{
         try {
             statement = Util.getMySQLConnection().createStatement();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
+    }*/
 
     public UserDaoJDBCImpl() {
 
