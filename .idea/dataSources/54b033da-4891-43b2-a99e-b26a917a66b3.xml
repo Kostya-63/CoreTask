@@ -891,28 +891,62 @@
       <ObjectGrants>SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,RELOAD,SHUTDOWN,PROCESS,FILE,REFERENCES,INDEX,ALTER,SHOW DATABASES,SUPER,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,REPLICATION SLAVE,REPLICATION CLIENT,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,CREATE USER,EVENT,TRIGGER,CREATE TABLESPACE,CREATE ROLE,DROP ROLE!
 </ObjectGrants>
     </user>
-    <user id="282" parent="1" name="mysql.infoschema">
+    <user id="282" parent="1" name="abcuser">
+      <Host>%</Host>
+      <ObjectGrants>ALL PRIVILEGES|db_example:null
+</ObjectGrants>
+    </user>
+    <user id="283" parent="1" name="mysql.infoschema">
       <Host>localhost</Host>
       <ObjectGrants>SELECT
 </ObjectGrants>
     </user>
-    <user id="283" parent="1" name="mysql.session">
+    <user id="284" parent="1" name="mysql.session">
       <Host>localhost</Host>
       <ObjectGrants>SHUTDOWN,SUPER
 SELECT|performance_schema:null
 SELECT|mysql.user:null
 </ObjectGrants>
     </user>
-    <user id="284" parent="1" name="mysql.sys">
+    <user id="285" parent="1" name="mysql.sys">
       <Host>localhost</Host>
       <ObjectGrants>TRIGGER|sys:null
 SELECT|sys.sys_config:null
 </ObjectGrants>
     </user>
-    <user id="285" parent="1" name="root">
+    <user id="286" parent="1" name="root">
       <Host>localhost</Host>
       <ObjectGrants>SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,RELOAD,SHUTDOWN,PROCESS,FILE,REFERENCES,INDEX,ALTER,SHOW DATABASES,SUPER,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,REPLICATION SLAVE,REPLICATION CLIENT,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,CREATE USER,EVENT,TRIGGER,CREATE TABLESPACE,CREATE ROLE,DROP ROLE!
 </ObjectGrants>
     </user>
+    <user id="287" parent="1" name="springuser">
+      <Host>%</Host>
+      <ObjectGrants>ALL PRIVILEGES|db_example:null
+</ObjectGrants>
+    </user>
+    <table id="288" parent="2" name="somepeople"/>
+    <column id="289" parent="288" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="290" parent="288" name="name">
+      <Position>2</Position>
+      <DataType>varchar(30)|0s</DataType>
+    </column>
+    <column id="291" parent="288" name="lastName">
+      <Position>3</Position>
+      <DataType>varchar(30)|0s</DataType>
+    </column>
+    <column id="292" parent="288" name="age">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <key id="293" parent="288" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>

@@ -10,25 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    Statement statement;
+    private Statement statement;
 
-    /*{
+    {
         try {
             statement = Util.getMySQLConnection().createStatement();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }*/
+    }
 
     public UserDaoJDBCImpl() {
 
     }
 
     public void createUsersTable() {
-        String createTable = "CREATE TABLE IF NOT EXISTS myIdolsTable(id int PRIMARY KEY AUTO_INCREMENT, " +
+        String createTable = "CREATE TABLE myIdolsTable(id int PRIMARY KEY AUTO_INCREMENT, " +
                 "name varchar(30), lastName varchar(30), age int)";
         try {
-            statement.executeUpdate(createTable);
+            ResultSet rs = statement.executeQuery("Show tables");
+            while(rs.next()) {
+                if(("myidolstable").equals(rs.getString(1))) {
+                    return;
+                }
+            }
+            statement.execute(createTable);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -36,7 +42,13 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void dropUsersTable() {
         try {
-            statement.executeUpdate("drop table myIdolsTable");
+            ResultSet rs = statement.executeQuery("Show tables");
+            while(rs.next()) {
+                if(("myidolstable").equals(rs.getString(1))) {
+                    statement.executeUpdate("drop table myIdolsTable");
+                    break;
+                }
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -62,17 +74,17 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-            try {
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM myIdolsTable");
-                while(resultSet.next()){
-                    User user = new User(resultSet.getString(2),
-                            resultSet.getString(3), resultSet.getByte(4));
-                    user.setId(resultSet.getLong(1));
-                    users.add(user);
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+        try {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM myIdolsTable");
+            while(resultSet.next()){
+                User user = new User(resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getByte(4));
+                user.setId(resultSet.getLong(1));
+                users.add(user);
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return users;
     }
 
