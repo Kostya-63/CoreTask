@@ -31,14 +31,15 @@ public class UserDaoHibernateImpl implements UserDao {
         session.close();
     }
 
-    @Override
+ /*   @Override
     public void dropUsersTable() {
         try {
             statement = Util.getMySQLConnection().createStatement();
             ResultSet rs = statement.executeQuery("Show tables");
             while (rs.next()) {
                 if (rs.getString(1).equals("somepeople")) {
-                    session.createSQLQuery("DROP TABLE somepeople").executeUpdate();
+                    session.createSQLQuery("DROP TABLE IF EXISTS somepeople").executeUpdate();
+                    System.out.println("Удалена таблица somepeople");
                     break;
                 }
             }
@@ -46,6 +47,14 @@ public class UserDaoHibernateImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }*/
+    @Override
+    public void dropUsersTable() {
+        session = Util.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        session.createSQLQuery("DROP TABLE IF EXISTS somepeople").executeUpdate();
+        tx.commit();
+        session.close();
     }
 
     @Override
@@ -77,7 +86,17 @@ public class UserDaoHibernateImpl implements UserDao {
         session.close();
         return users;
     }
+/*@Override
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<>();
 
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+            userList = session.createQuery("from User order by name").list();
+            session.getTransaction().commit();
+        }
+        return userList;
+    }*/
     @Override
     public void cleanUsersTable() {
         session = Util.getSessionFactory().openSession();

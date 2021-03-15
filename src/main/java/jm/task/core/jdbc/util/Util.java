@@ -54,23 +54,20 @@ public class Util {
 
 
 /*
-public class HibernateUtil {
-    private static SessionFactory sessionFactory;
-    private HibernateUtil() {}
-    public static SessionFactory getSessionFactory() {
-        Properties prop = new Properties();
-        prop.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/mydbtest?serverTimezone=Europe/Moscow");
-        prop.setProperty("hibernate.connection.username", "root");
-        prop.setProperty("hibernate.connection.password", "root");
-        prop.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-        prop.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
-        prop.setProperty("show_sql", "true");
-//        prop.setProperty("hibernate.default_schema", "facingissuesonitdb");
-        prop.setProperty("hibernate.hbm2ddl.auto", "create");
-        sessionFactory = new Configuration().addAnnotatedClass(User.class).addProperties(prop).buildSessionFactory();
-        return sessionFactory;
-    }
-}
+Properties prop = new Properties();
+
+            prop.setProperty("hibernate.connection.url",
+                    "jdbc:mysql://localhost:3306/coreTaskDB?serverTimezone=UTC");
+            prop.setProperty("dialect", "org.hibernate.dialect.MySQL5Dialect");
+            prop.setProperty("hibernate.connection.username", "Kostya");
+            prop.setProperty("hibernate.connection.password", "carisma1997");
+            prop.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver");
+            prop.setProperty("show_sql", String.valueOf(true));
+
+            StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(prop).build();
+            Configuration configuration = new Configuration().configure();
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            */
 /*
 public static SessionFactory getSessionFactoryHibernate() {
         if(factory == null) {

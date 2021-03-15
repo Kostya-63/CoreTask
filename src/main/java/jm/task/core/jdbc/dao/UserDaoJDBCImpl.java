@@ -46,6 +46,7 @@ public class UserDaoJDBCImpl implements UserDao {
             while(rs.next()) {
                 if(("myidolstable").equals(rs.getString(1))) {
                     statement.executeUpdate("drop table myIdolsTable");
+                    System.out.println("Таблица myidolstable удалена");
                     break;
                 }
             }
@@ -77,8 +78,10 @@ public class UserDaoJDBCImpl implements UserDao {
         try {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM myIdolsTable");
             while(resultSet.next()){
-                User user = new User(resultSet.getString(2),
-                        resultSet.getString(3), resultSet.getByte(4));
+                User user = new User(
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getByte(4));
                 user.setId(resultSet.getLong(1));
                 users.add(user);
             }
@@ -91,6 +94,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() {
         try {
             statement.executeUpdate("TRUNCATE TABLE myIdolsTable");
+            System.out.println("Таблица myidolstable очищена");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

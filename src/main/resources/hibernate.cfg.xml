@@ -7,12 +7,12 @@
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">carisma1997</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/coreTaskDB</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/coreTaskDB?serverTimezone=UTC</property>
         <property name="hibernate.connection.username">Kostya</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="show_sql">true</property>
 
-        <mapping class="jm.task.core.jdbc.model.User"></mapping>
+        <mapping class="jm.task.core.jdbc.model.User"/>
     </session-factory>
 </hibernate-configuration>
