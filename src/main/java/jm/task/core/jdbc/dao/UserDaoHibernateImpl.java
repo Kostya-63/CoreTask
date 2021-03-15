@@ -5,14 +5,10 @@ import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
     Session session;
-    Statement statement;
 
     public UserDaoHibernateImpl() {
 
@@ -31,23 +27,6 @@ public class UserDaoHibernateImpl implements UserDao {
         session.close();
     }
 
- /*   @Override
-    public void dropUsersTable() {
-        try {
-            statement = Util.getMySQLConnection().createStatement();
-            ResultSet rs = statement.executeQuery("Show tables");
-            while (rs.next()) {
-                if (rs.getString(1).equals("somepeople")) {
-                    session.createSQLQuery("DROP TABLE IF EXISTS somepeople").executeUpdate();
-                    System.out.println("Удалена таблица somepeople");
-                    break;
-                }
-            }
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
     @Override
     public void dropUsersTable() {
         session = Util.getSessionFactory().openSession();
